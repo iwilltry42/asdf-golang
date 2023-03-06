@@ -6,6 +6,10 @@ if [ "${ASDF_INSTALL_VERSION}" != 'system' ] ; then
 	fi
 
 	if [[ "unset" == "${GOPATH:-unset}" ]] ; then
-	    export GOPATH=$ASDF_INSTALL_PATH/packages
+	    if [[ "${ASDF_GOPATH_UNSET}" == "1" ]]; then
+	      unset GOPATH
+	    else
+	      export GOPATH=$ASDF_INSTALL_PATH/packages
+	    fi
 	fi
 fi
